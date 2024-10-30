@@ -1,2 +1,8 @@
-# OFER
-OFER: Occluded Face Expression Reconstruction. A 3D face reconstruction method producing diverse plausible expressive faces from a single-view occluded image.
+
+### <div align="center">👉 OFER: Occluded Face Expression Reconstruction<div> 
+<div align="center">
+<a href="https://arxiv.org/abs/2410.21629"><img src="https://img.shields.io/static/v1?label=Paper&message=Arxiv:FORA&color=red&logo=arxiv"></a> &ensp;
+</div>
+Reconstructing 3D face models from a single image is an inherently ill-posed problem, which becomes even more challenging in the presence of occlusions. In addition to fewer available observations, occlusions introduce an extra source of ambiguity, where multiple reconstructions can be equally valid. Despite the ubiquity of the problem, very few methods address its multi-hypothesis nature. In this paper we introduce OFER, a novel approach for single image 3D face reconstruction that can generate plausible, diverse, and expressive 3D faces, even under strong occlusions. Specifically, we train two diffusion models to generate the shape and expression coefficients of a face parametric model, conditioned on the input image. This approach captures the multi-modal nature of the problem, generating a distribution of solutions as output. Although this addresses the ambiguity problem, the challenge remains to pick the best matching shape to ensure consistency across diverse expressions. To achieve this, we propose a novel ranking mechanism that sorts the outputs of the shape diffusion network based on the predicted shape accuracy scores to select the best match. We evaluate our method using standard benchmarks and introduce CO-545, a new protocol and dataset designed to assess the accuracy of expressive faces under occlusion. Our results show improved performance over occlusion-based methods, with added ability to generate multiple expressions for a given image.
+
+![Teaser]()
