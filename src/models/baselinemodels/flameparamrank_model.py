@@ -12,7 +12,6 @@
 # der Wissenschaften e.V. (MPG). acting on behalf of its Max Planck Institute
 # for Intelligent Systems. All rights reserved.
 #
-# Contact: mica@tue.mpg.de
 
 import os
 import sys
