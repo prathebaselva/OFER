@@ -1,0 +1,57 @@
+#config
+
+
+pretrained_model_path: 'data/pretrained/'
+modelname: 'flameparamdiffusion_model'
+
+dataset:
+  root: 'data'
+  num_workers: 1
+  n_exp: 50
+  training_data: ['Tempeh']
+  batch_size: 16
+  n_images: 4
+  flametype: 'flame23'
+
+model:
+  use_pretrained: False
+  n_shape: 300
+  n_exp: 50
+  n_pose: 3
+  name: 'flameparamdiffusion_model'
+  with_exp: True
+  with_val: False
+  with_freeze: 'l4'
+  expencoder: 'arcfarl'
+  nettype: 'attn'
+  flametype: 'flame23'
+
+net:
+  tag: 'ofer_expgen' 
+  losstype: 'l1'
+  flame_dim: 53
+  context_dim: 1024
+  numattn: 1
+  numqkv: 16
+  dims: [53,25,10]
+
+varsched:
+  num_steps: 1000
+  beta_1: 1e-4
+  beta_T: 1e-2
+ 
+
+train:
+  arcface_lr: 1e-4
+  diff_lr: 1e-3
+  weight_decay: 1e-4
+  use_mask: False
+  max_steps: 2000000
+  log_steps: 50
+  val_steps: 5
+  vis_steps: 5000
+  val_save_img: 5000
+  checkpoint_steps: 1000
+  checkpoint_epochs_steps: 300
+  resume: False
+  resume_checkpoint: 'output/config_flameparamdiffusion_exp/best_models/best.tar' 

@@ -1,0 +1,58 @@
+#config
+
+
+pretrained_model_path: 'data/pretrained/'
+modelname: 'flameparamdiffusion_model'
+
+dataset:
+  root: 'data'
+  num_workers: 0
+  training_data: ['Lyhm', 'Stirling_lq','Stirling_hq', 'FaceWarehouse', 'Florence'] 
+  batch_size: 16
+  n_images: 4
+  flametype: 'flame23'
+
+model:
+  use_pretrained: False
+  n_shape: 300
+  n_exp: 100
+  n_pose: 15
+  name: 'flameparamdiffusion_model'
+  with_exp: False
+  with_val: False
+  with_freeze: 'l4'
+  nettype: 'attn'
+  expencoder: 'arcface'
+  flametype: 'flame23'
+
+net:
+  tag: 'ofer_idgen'
+  losstype: 'l1'
+  flame_dim: 300
+  context_dim: 512
+  numqkv: 16
+  dims: [300,50,10]
+
+varsched:
+  num_steps: 1000
+  beta_1: 1e-4
+  beta_T: 1e-2
+ 
+
+train:
+  diff_lr: 1e-3
+  arcface_lr: 1e-4
+  farl_lr: 1e-4
+  clip_lr: 1e-4
+  dinov2_lr: 1e-4
+  weight_decay: 1e-4
+  use_mask: False
+  max_steps: 2000000
+  log_steps: 50
+  val_steps: 1
+  vis_steps: 1000
+  val_save_img: 1000
+  checkpoint_steps: 1000
+  checkpoint_epochs_steps: 300
+  resume: False
+  resume_checkpoint: 'output/config_flameparamdiffusion_flame23/best_models/best.tar' 

@@ -1,0 +1,75 @@
+#config
+
+
+pretrained_model_path: 'data/pretrained/'
+modelname: 'flameparamrank_model'
+
+dataset:
+  root: 'data'
+  num_workers: 0
+  training_data: ['Stirling_lq_val']
+  batch_size: 8
+  n_images: 1
+  flametype: 'flame23'
+
+model:
+  use_pretrained: False
+  frontonly: True
+  n_shape: 300
+  n_exp: 100
+  n_pose: 15
+  name: 'flameparamrank_model'
+  pretrainname: 'flameparamdiffusion_model'
+  with_val: False
+  with_freeze: 'l4'
+  expencoder: 'arcfarl'
+  nettype: 'listnet'
+  preexpencoder: 'arcface'
+  prenettype: 'preattn'
+  numsamples: 100
+  sampling: 'ddpm'
+  usenewfaceindex: True
+  flametype: 'flame23'
+
+net:
+  tag: 'flameparamrank_arcfarl_lr1e6_flame23_listnetrank_scorecb1_Softmaxloss_ddpm_samp100_inputflame_test'
+  losstype: 'Softmaxlistnetloss'
+  arch: 'archv1'
+  rankarch: 'scorecb1listnet'
+  flame_dim: 300
+  shape_dim: 5355
+  context_dim: 1024
+  dims: [5355, 2048, 512, 64, 1] 
+  predims: [300,50,10]
+  numattn: 1
+  numqkv: 16
+  numsamples: 100
+
+varsched:
+  num_steps: 1000
+  beta_1: 1e-4
+  beta_T: 1e-2
+ 
+
+train:
+  arcface_lr: 1e-4
+  farl_lr: 1e-4
+  rank_lr: 1e-6
+  joint_lr: 1e-4
+  point_lr: 1e-4
+  flame_lr: 1e-4
+  hse_lr: 1e-4
+  diff_lr: 1e-3
+  weight_decay: 1e-4
+  use_mask: False
+  max_steps: 2000000
+  log_steps: 50
+  val_steps: 1
+  vis_steps: 10
+  val_save_img: 5000
+  checkpoint_steps: 1000
+  checkpoint_epochs_steps: 300
+  resumepretrain: True
+  resume_pretrain_checkpoint: 'pretrained/model_train_flameparamdiffusion_arcface_attn1_3_withstir_archv4_step1000_lr1e-3_flame23_qkv16_400_best.tar' 
+  resume: False
+  resume_checkpoint: 'output/config_flameparamrank_flame23/best_models/model_train_flameparamrank_arcfarl_lr1e6_flame23_listnetrank_scorecb2_Softmaxloss_ddpm_samp100_inputflame_best.tar'
