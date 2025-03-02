@@ -7,7 +7,7 @@ Reconstructing 3D face models from a single image is an inherently ill-posed pro
 
 ![Teaser](OFER_teaser.png)
 
-# 🔧 Reconstruction and Sampling
+# 🔧 Setup
 
 - Python >= 3.9 (Recommend to use [Anaconda](https://www.anaconda.com/download/#linux) or [Miniconda](https://docs.conda.io/en/latest/miniconda.html))
 - [PyTorch >= 1.13.0+cu11.7](https://pytorch.org/)
