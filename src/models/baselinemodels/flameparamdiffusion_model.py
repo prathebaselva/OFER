@@ -243,15 +243,8 @@ class FlameParamDiffusionModel(BaseModel):
         gt_flameparam = None
         pred_flameparam = None
 
-        if self.expencoder == 'arcface':
-            identity_code = codedict['arcface']
-        elif self.expencoder == 'farl':
-            identity_code = codedict['farl']
-        elif self.expencoder == 'clip':
-            identity_code = codedict['clip']
-        elif self.expencoder == 'dinov2':
-            identity_code = codedict['dinov2']
-        elif self.expencoder == 'arcfarl':
+        identity_code = codedict[self.expencoder]
+        if self.expencoder == 'arcfarl':
             identity_code = torch.cat((codedict['farl'], codedict['arcface']), dim=1)
         batch_size = identity_code.shape[0]
 
