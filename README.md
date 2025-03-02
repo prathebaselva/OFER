@@ -20,7 +20,6 @@ conda activate OFER
     - Training Data:
         - Obtained the data as mentioned in [MICA](https://github.com/Zielon/MICA?tab=readme-ov-file#dataset-and-training) 
     - Training
-        - The config file located under src/configs
         ```bash
         python trainIdGen.py --cfg './src/configs/config_flameparamdiffusion_flame23.yml' --toseed 0 
         ```
@@ -30,7 +29,6 @@ conda activate OFER
     - Training Data:
         - Same data of IdGen
     - Training
-        - The config file located under src/configs
         ```bash
         python trainIdRank.py --cfg './src/configs/config_flameparamrank_flame23.yml' --toseed 0 
         ```
