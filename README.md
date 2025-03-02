@@ -25,6 +25,9 @@ conda activate OFER
         ```
 - To train ExpGen:
     - Follow similar steps to IdGen
+    - ```bash
+        python trainExpGen.py --cfg './src/configs/config_flameparamdiffusion_exp.yml' --toseed 0 
+        ```
 - To train IdRank:
     - Training Data:
         - Same data of IdGen
