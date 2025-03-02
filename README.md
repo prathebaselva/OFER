@@ -37,12 +37,14 @@ conda activate OFER
         ```
 ## Acknowledgements
 - Thanks to [MICA](https://github.com/Zielon/MICA) for their work and code base.
-Please cite for reference:
 
 ## Citation
+Please cite for reference:
+```bibtex
 @misc{pratheba2024OFER,
 Author = {Pratheba Selvaraju and Victoria Fernandez Abrevaya and Timo Bolkart and Rick Akkerman and Tianyu Ding and Faezeh Amjadi and Ilya Zharkov},
 Title = {OFER: Occluded Face Expression Reconstruction},
 Year = {2024},
 Eprint = {arXiv:2410.21629},
 }
+```
