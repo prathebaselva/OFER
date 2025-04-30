@@ -8,11 +8,11 @@
 # Any use of the computer program without a valid license is prohibited and
 # liable to prosecution.
 #
-# Copyright©2022 Max-Planck-Gesellschaft zur Förderung
+# Copyright©2025 Max-Planck-Gesellschaft zur Förderung
 # der Wissenschaften e.V. (MPG). acting on behalf of its Max Planck Institute
 # for Intelligent Systems. All rights reserved.
 #
-# Contact: mica@tue.mpg.de
+# Contact: ofer@tue.mpg.de
 
 
 import os
@@ -440,19 +440,7 @@ class Tester2(object):
         logger.info(f"[TESTER] AFLW2000 validation has begun!")
         for i in range(len(self.model.keys())):
             self.model[i].eval()
-        #self.args.filename = self.args.filename.strip()
-        #self.args.filename = '/project/pi_elearned_umass_edu/pselvaraju/pselvaraju/Project_FaceDiffusion/FACEDATA/COMA/coma_midframes/validation_occ_26_C/501.txt'
         valread = open(self.args.filename,'r')
-#        for line in valread:
-#            image_name = line.strip()
-#            images = os.path.join(self.aflw2000images, line)
-#        valread.close()
-#        if not os.path.exists(images):
-#            print("path does not exists")
-#            print(images)
-#            return
-
-#        valread = open(AFLW2000_VALIDATION, 'r')
         allimages = []
         image_names = []
         for line in valread:
@@ -761,10 +749,6 @@ class Tester2(object):
                 codedict2 = self.model[1].encode(torch.Tensor(normtransimage).unsqueeze(0).to('cuda'), arcface.unsqueeze(0))
 
             opdict2 = []
-            #rand = sortindex[0:3] # np.random.randint(0,100,3)
-            #opdict2.append(self.model[1].decode(codedict2, 0, shapecode=shape[rand[0]].tile(numface,1).float()))
-            #opdict2.append(self.model[1].decode(codedict2, 0, shapecode=shape[rand[1]].tile(numface,1).float()))
-            #opdict2.append(self.model[1].decode(codedict2, 0, shapecode=shape[rand[2]].tile(numface,1).float()))
             self.model[1].testing = True
             print(self.model[1].cfg.net.flame_dim, flush=True)
             print(numface, flush=True)
@@ -775,23 +759,6 @@ class Tester2(object):
                 r = np.random.randint(1000)
                 seed_everything(r)
                 opdict2.append(self.model[1].decode(codedict2, 0, shapecode=shape[maxindex].tile(numface,1).float()))
-            #seed_everything(22)
-            #opdict2.append(self.model[1].decode(codedict2, 0, shapecode=shape[maxindex].tile(20,1).float()))
-            #seed_everything(47)
-            #opdict2.append(self.model[1].decode(codedict2, 0, shapecode=shape[maxindex].tile(20,1).float()))
-            #seed_everything(52)
-            #opdict2.append(self.model[1].decode(codedict2, 0, shapecode=shape[maxindex].tile(20,1).float()))
-
-
-            #opdict3 = None
-            #if len(self.model) == 4:
-            #    expression = opdict2['pred_flameparam']
-            #    print("in opdict3", flush=True)
-            #    opdict3 = self.model[3].decode(codedict4, 0, shapecode=shape.tile(numface,1).float(), expcode=expression.float(), rotcode=resnetrot.float())
-
-            #opdict2 = self.model[1].testdecode(codedict2, 0, shapeparam=shape.tile(numface,1), rotparam=syn_pose.tile(numface,1))
-            #opdict2 = self.model[1].testdecode(codedict2, 0, shapeparam=shape.tile(numface,1), rotparam=deca_pose.tile(numface,1))
-            #opdict2 = self.model2.testdecode(codedict2, 0)
 
         #type = folder.split('/')[-1]
         os.makedirs(os.path.join(self.cfg.output_dir, f'{outfile}','flamesample'), exist_ok=True)
@@ -829,35 +796,6 @@ class Tester2(object):
         print(pred_front.shape)
         all_pred_flame_meshes = torch.vstack(all_pred_flame_meshes)
 
-#        for ni in range(1):
-#            if 'pred_mesh' in opdict2[ni]:
-#                pred_flame_meshes = opdict2[ni]['pred_mesh']
-#                ##### Get the shapes with maximum variations ############
-#                #distances = torch.cdist(front_face, front_face)
-#                findices = np.load('/work/pselvaraju_umass_edu/Project_FaceDiffusion/DIFFFACE/pretrained/frontindices.npy')
-#                pred_front = pred_flame_meshes[:,findices].reshape(numface,-1)
-#                mean_front = torch.mean(pred_front, axis=0)
-#                residual = pred_front - mean_front
-#                std = torch.std(pred_front,axis=1)
-#                #print(std)
-#                distances = torch.cdist(mean_front.unsqueeze(0), residual)
-#                expsortindex = torch.argsort(distances, descending=True)[0]
-#                #print(distances)
-#                #print(expsortindex)
-#                #expsortindex = torch.argsort(std, descending=True)
-#            else:
-#                continue
-
-            #selectnum = np.random.randint(0, numface, 20)
-            #for num in range(20):
-            #for num in range(numface):
-        #mean_front = torch.mean(pred_front, axis=0)
-        #residual = pred_front - mean_front
-        #std = torch.std(pred_front,axis=1)
-        #print(std)
-        #distances = torch.cdist(mean_front.unsqueeze(0), residual)
-        #expsortindex = torch.argsort(distances, descending=True)[0]
-        #expsortindex = torch.argsort(std, descending=True)
         expsortindex = np.arange(15)
 
         for num in range(15):
