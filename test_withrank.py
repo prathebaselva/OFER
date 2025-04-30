@@ -9,14 +9,11 @@ import numpy as np
 import random
 from pytorch_lightning import seed_everything
 
-from src.tester import Tester
 from src.testerrank import Tester as TesterRank
-from src.testermesh import Testermesh
-from src.tester2 import Tester2
+from src.tester import Tester2
 
-#from src.models.baselinemodels.imageflameregressor_model import ImageFlameRegressorModel
+
 from src.models.baselinemodels.flameparamdiffusion_model import FlameParamDiffusionModel
-from src.models.baselinemodels.meshdiffusion_model import MeshDiffusionModel
 from src.models.baselinemodels.flameparamrank_model import FlameParamRankModel
 
 def random_seed(seed_value):
@@ -143,30 +140,16 @@ if __name__ == '__main__':
         cfg3.model.flametype = 'flame20'
         cfg3.train.resume_checkpoint = args.checkpoint3
         print("checkpoint = ", os.path.exists(args.checkpoint3))
-        #model3 = MeshDiffusionResnetCamModel(cfg3, 'cuda')
-        #model3.eval()
-
-        #models = [model1, model2, model3]
-        #cfgs = [cfg1, cfg2, cfg3]
-        #checkpoints = [args.checkpoint1, args.checkpoint2, args.checkpoint3]
-
+        
         models = [model1, model2]
         cfgs = [cfg1, cfg2]
         cfg.dataset.flametype = 'flame20'
         cfg.model.flametype = 'flame20'
 
-        #cfg.output_dir = '/project/pi_elearned_umass_edu/pselvaraju/pselvaraju/Project_FaceDiffusion/ECCV_24/ours/coma_26C/no_occ_exp/' 
-        cfg.output_dir = '/project/pi_elearned_umass_edu/pselvaraju/pselvaraju/Project_FaceDiffusion/ECCV_24/ours/pickpix_53_jaw05' 
-        #cfg.output_dir = '/project/pi_elearned_umass_edu/pselvaraju/pselvaraju/Project_FaceDiffusion/ECCV_24/ours/aflw2000/' 
-        #cfg.output_dir = '/project/pi_elearned_umass_edu/pselvaraju/pselvaraju/Project_FaceDiffusion/ECCV_24/ours/aflw2000_jaw05/' 
+        cfg.output_dir = 'pickpix_53_jaw05' 
         cfg.input_dir = args.imagepath
-        #tester = Tester2(models, cfg, cfgs, deviceid, args)
         tester = Tester2(models, cfg, cfgs, deviceid, args, testerrank)
-        #tester.test_realocc('diverse3d_exp_ddpm', 'nocache', 20, args.imagepath)
-        #tester.test_realocc('aflw2000', 'nocache', 20, args.filename)
         tester.test_aflw2000('realocc', 'nocache', 100)
-        #tester.test_aflw2000('coma_545', 'nocache', 15)
-        #tester.test_aflw2000('aflw2000', 'nocache', 20)
 
     else:
         cfg.dataset.flametype = 'flame20'
@@ -188,13 +171,11 @@ if __name__ == '__main__':
         cfg.model.nettype = 'preattn'
         cfg.net.numattn = 1
         cfg.net.numqkv = 16
-        #cfg.net.dims = [300,300,200,100,50]
         cfg.net.dims=[300,50,10]
-        #cfg.net.dims=[300]
     
         model = FlameParamDiffusionModel(cfg, deviceid)
         tester = Tester(model, cfg, deviceid, args)
         #tester.test_now('flameparamdiffusion_arcface_flame20_attn_qkv16_samp100', 'nocache', 100, istest='val', isocc=0, filename=args.filename)
-        cfg.output_dir = '/project/pi_elearned_umass_edu/pselvaraju/pselvaraju/Project_FaceDiffusion/ECCV_24/ours/diverse3d_test/realocc_neutral_fl20'
-        cfg.input_dir = '/work/pselvaraju_umass_edu/Project_FaceDiffusion/diverse3dface/data/testset/arcface_input' 
+        cfg.output_dir = 'realocc'
+        cfg.input_dir = 'arcface_input' 
         tester.test_realocc('diverse3d_flame20_attn_qkv16',  100)
