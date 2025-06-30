@@ -57,10 +57,10 @@ python test.py --numcheckpoint 3 --cfg './src/configs/config_flameparamdiffusion
 ## Citation
 Please cite for reference:
 ```bibtex
-@InProceedings{pratheba2024OFER,
+@InProceedings{pratheba2025OFER,
 Author = {Selvaraju, Pratheba and Abrevaya, Victoria Fernandez and Bolkart, Timo and Akkerman, Rick and Ding, Tianyu and Amjadi, Faezeh and Zharkov, Ilya},
 Title = {OFER: Occluded Face Expression Reconstruction},
-Year = {2024},
+Year = {2025},
 booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2025},
 pages =  {26985-26995},
 }
