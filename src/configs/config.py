@@ -24,6 +24,7 @@ cfg.model.name = ''
 cfg.model.pretrainname = ''
 
 cfg.model.flame23_model_path = os.path.join(cfg.root_dir, 'data/FLAME2023', 'flame2023_no_jaw.pkl')
+cfg.model.flame_model_path = os.path.join(cfg.root_dir, 'data/FLAME2020', 'generic_model.pkl')
 cfg.model.static_landmark_embedding_path = os.path.join(cfg.root_dir, 'data/FLAME2023', 'flame_static_embedding.pkl')
 cfg.model.dynamic_landmark_embedding_path = os.path.join(cfg.root_dir, 'data/FLAME2023', 'flame_dynamic_embedding.npy')
 cfg.model.flame_lmk_embedding_path = os.path.join(cfg.root_dir, 'data/FLAME2023', 'landmark_embedding.npy')
@@ -211,6 +212,7 @@ def parse_args():
     parser.add_argument('--test_dataset', type=str, help='Test dataset path', default='')
     parser.add_argument('--filename', type=str, help='filename', default='')
     parser.add_argument('--imagepath', type=str, help='imagepath', default='')
+    parser.add_argument('--outputpath', type=str, help='outputpath', default='')
     parser.add_argument('--toseed', type=int, help='to seed or not', default=0)
     
     args = parser.parse_args()

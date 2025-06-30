@@ -23,7 +23,6 @@ from src.models.arcface import Arcface
 from src.models.base_model import BaseModel
 from src.models.baselinemodels.flameparamdiffusion_model import FlameParamDiffusionModel
 from src.models.network.rank_network import RankMLPNet
-from pytorch_lightning import seed_everything
 from loguru import logger
 import numpy as np
 

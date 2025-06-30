@@ -1,0 +1,72 @@
+#config
+
+
+pretrained_model_path: 'data/pretrained/'
+modelname: 'flameparamdiffusion_model'
+
+dataset:
+  root: '../FACEDATA'
+  num_workers: 1
+  #training_data: ['Lyhm', 'Stirling_lq','Stirling_hq', 'FaceWarehouse', 'Florence']
+  #training_data: ['Lyhm_train', 'Stirling_lq_train','Stirling_hq_train', 'FaceWarehouse_train', 'Florence_train']
+  #validation_data: ['Lyhm_val', 'Stirling_lq_val','Stirling_hq_val', 'FaceWarehouse_val', 'Florence_val']
+  #training_data: ['Stirling_hq_train']
+  #validation_data: ['Stirling_hq_val']
+  #training_data: ['Stirling_hq']
+  #training_data: ['Lyhm', 'FaceWarehouse', 'Florence']
+  #training_data: ['Coma']
+  training_data: ['Lyhm', 'Stirling_lq','Stirling_hq', 'FaceWarehouse', 'Florence']
+  batch_size: 64
+  n_images: 4
+  flametype: 'flame20'
+
+model:
+  use_pretrained: False
+  n_shape: 300
+  n_exp: 100
+  n_pose: 15
+  name: 'flameparamdiffusion_model'
+  with_exp: False
+  with_val: False
+  with_freeze: 'l4'
+  nettype: 'preattn'
+  expencoder: 'arcface'
+  flametype: 'flame20'
+
+net:
+    #tag: 'flameparamdiffusion_archv7_step1000_lr1e3_beta1e32e2'
+  tag: 'flameparamdiffusion_arcface_attn_qkv16_lr1e-3_flame20'
+  losstype: 'l1'
+  arch: 'archv4'
+  flame_dim: 300
+  context_dim: 512
+  numqkv: 16
+  numattn: 1
+  dims: [300,50,10]
+  # dims: [300,150,75,25]
+
+varsched:
+  num_steps: 1000
+  #beta_1: 0.0015
+  #beta_T: 0.0195
+  #beta_1: 1e-3
+  #beta_T: 3e-3
+  beta_1: 1e-4
+  beta_T: 1e-2
+ 
+
+train:
+  diff_lr: 1e-3
+  arcface_lr: 1e-4
+  farl_lr: 1e-4
+  weight_decay: 1e-4
+  use_mask: False
+  max_steps: 2000000
+  log_steps: 50
+  val_steps: 1
+  vis_steps: 1000
+  val_save_img: 1000
+  checkpoint_steps: 1000
+  checkpoint_epochs_steps: 300
+  #resume: True
+  #resume_checkpoint: 'output/config_flameparamdiffusion_farl/best_models/model_train_flameparamdiffusion_farl_withstir_archv4_step1000_lr1e-3_flame23_200_best_nov3.tar' 
