@@ -9,6 +9,8 @@ Reconstructing 3D face models from a single image is an inherently ill-posed pro
 
 ## Pretrained weights
 - Download the neutral and expression model weights from here : [Link](https://drive.google.com/drive/u/0/folders/1TQNyZVucVhwI0n9aMc-s3rO3hCG0V1mj)
+- Download model weights trained on FLAME2020 : [Link](https://drive.google.com/drive/folders/1MZutLKw6jvWEfwqRMYiBOggAuKBEY3zn?usp=sharing)
+and place it in 'checkpoint' folder
 # 🔧 Setup
 
 - Python >= 3.9 (Recommend to use [Anaconda](https://www.anaconda.com/download/#linux) or [Miniconda](https://docs.conda.io/en/latest/miniconda.html))
@@ -16,7 +18,12 @@ Reconstructing 3D face models from a single image is an inherently ill-posed pro
 ```bash
 conda create -n OFER python=3.9
 conda activate OFER
+conda env update --file ofer.yml --prune
 ```
+## Dependencies
+- Download FaRL pretrained model from [Link](https://github.com/FacePerceiver/FaRL/releases/download/pretrained_weights/FaRL-Base-Patch16-LAIONFace20M-ep64.pth) and place it in 'pretrained' folder
+- Download FLAME2020 model files from [Link](https://flame.is.tue.mpg.de/download.php) and place it in 'data' folder
+
 ## Training
 - To train IdGen:
     - Training Data:
@@ -37,6 +44,13 @@ conda activate OFER
         ```bash
         python trainIdRank.py --cfg './src/configs/config_flameparamrank_flame23.yml' --toseed 0 
         ```
+## Testing
+-To run the demo:
+```bash
+python test.py --numcheckpoint 3 --cfg './src/configs/config_flameparamdiffusion_flame20.yml' --checkpoint1 'checkpoint/model_idrank.tar' --checkpoint2 'checkpoint/model_idgen_flame20.tar' --checkpoint3 'checkpoint/model_expgen_flame20.tar' --filename 'data/PICKPIK/validation/4.txt' --imagepath 'data/PICKPIK/' --outputpath 'output'
+```
+-Results will be saved in 'output' folder
+
 ## Acknowledgements
 - Thanks to [MICA](https://github.com/Zielon/MICA) for their work and code base.
 
