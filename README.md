@@ -8,8 +8,7 @@ Reconstructing 3D face models from a single image is an inherently ill-posed pro
 ![Teaser](OFER_teaser.png)
 
 ## Pretrained weights
-- Download the neutral and expression model weights from here : [Link](https://drive.google.com/drive/u/0/folders/1TQNyZVucVhwI0n9aMc-s3rO3hCG0V1mj)
-- Download model weights trained on FLAME2020 : [Link](https://drive.google.com/drive/folders/1MZutLKw6jvWEfwqRMYiBOggAuKBEY3zn?usp=sharing)
+- Download model weights trained on FLAME2020 : [Link](https://ofer.is.tue.mpg.de/download.php)
 and place it in 'checkpoint' folder
 # 🔧 Setup
 
