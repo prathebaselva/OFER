@@ -654,10 +654,10 @@ def main( args):
     #logger.info(f'Processing finished. Results has been saved in {args.o}')
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='MICA - Towards Metrical Reconstruction of Human Faces')
-    parser.add_argument('-i', default='demo/input', type=str, help='Input folder with images')
+    parser = argparse.ArgumentParser(description='OFER - Occluded Face Expression Reconstruction')
+    parser.add_argument('-i', default='input', type=str, help='Input folder with images')
     parser.add_argument('-r', default='FLORENCE', type=str, help='Input instance')
-    parser.add_argument('-o', default='demo/arcface', type=str, help='Processed images for MICA input')
+    parser.add_argument('-o', default='arcface', type=str, help='Processed images for OFER input')
     parser.add_argument('-a', default='actor', type=str, help='Actor')
 
     args = parser.parse_args()
